@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentRight="true">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textView"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:text="@string/button" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_toEndOf="@+id/button"
+        android:contentDescription="flag"
+        app:srcCompat="@drawable/flag" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageButton"
+        android:layout_alignParentLeft="true"
+        android:text="@string/checkBox" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="247dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageButton"
+        android:layout_alignParentRight="true"
+        android:text="Switch on/off" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/switch1"
+        android:layout_marginTop="6dp"
+        android:hint="@string/editText" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/editText"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="198dp"
+        android:layout_marginBottom="290dp"
+        android:text="Button" />
+</RelativeLayout>

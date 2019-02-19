@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".ProfileActivity">
+
+    <TextView
+        android:id="@+id/profileTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/profileTV" />
+
+    <TextView
+        android:id="@+id/nameTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nameTV" />
+
+    <EditText
+        android:id="@+id/nameET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/nameET"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/emailTV2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/emailTV2" />
+
+    <EditText
+        android:id="@+id/emailET2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/emailET2"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/pictureTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pictureTV" />
+
+    <ImageButton
+        android:id="@+id/mImageButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/picture_frame" />
+
+    <TextView
+        android:id="@+id/takepicTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/takepicTV" />
+
+    <Button
+        android:id="@+id/chatBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="go to chat" />
+
+</LinearLayout>

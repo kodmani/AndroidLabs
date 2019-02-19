@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">AndroidLabs</string>
+    <string name="hello_message">Hello World!</string>
+    <string name="buttonText">Je suis bouton</string>
+    <string name="textView">Voici mes widgets:</string>
+    <string name="button">Bouton</string>
+    <string name="checkBox">case a cocher</string>
+    <string name="editText">Tapez votre reponse ici</string>
+
+
+    <string name="emailTV">Entrez votre adresse email:</string>
+    <string name="emailET">Tapez email ici</string>
+    <string name="passwordTV">Tapez votre mot de passe:</string>
+    <string name="loginBtn">S\'identifier</string>
+    <string name="profileTV">Votre profil</string>
+    <string name="nameTV">Votre nom:</string>
+    <string name="nameET">Entrez votre nom</string>
+    <string name="emailTV2">Votre email</string>
+    <string name="emailET2">Entrer votre email</string>
+    <string name="pictureTV">Ta photo:</string>
+    <string name="takepicTV">Cliquez sur le bouton ci-dessus pour prendre une photo</string>
+
+    <string name="send">Send</string>
+    <string name="receive">Receive</string>
+    <string name="typeTV">Type here</string>
+    <string name="type_here">Type here</string>
+
+</resources>
