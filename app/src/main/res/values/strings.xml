@@ -20,8 +20,10 @@
     <string name="pictureTV">Your picture:</string>
     <string name="takepicTV">Click the button above to take a picture</string>
 
-    <string name="send">Send</string>
-    <string name="receive">Receive</string>
+
+    <string name="chatBtn">Go to chat</string>
+    <string name="sendBtn">Send</string>
+    <string name="receiveBtn">Receive</string>
     <string name="typeTV">Type here</string>
     <string name="type_here">Type here</string>
 

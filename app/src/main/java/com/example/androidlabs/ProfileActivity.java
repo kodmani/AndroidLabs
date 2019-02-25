@@ -16,6 +16,7 @@ public class ProfileActivity extends AppCompatActivity {
     public static final String ACTIVITY_NAME = "ProfileActivity";
 
     ImageButton mImageButton;
+
     public  void takePic (View view){
         dispatchTakePictureIntent();
 
@@ -34,6 +35,9 @@ public class ProfileActivity extends AppCompatActivity {
         enterText.setText(prevTyped);
 
         mImageButton = findViewById(R.id.mImageButton);
+        mImageButton.setOnClickListener(e -> {
+            dispatchTakePictureIntent();
+        });
 
         Button gotochat = (Button)findViewById(R.id.chatBtn);
         gotochat.setOnClickListener( c -> {

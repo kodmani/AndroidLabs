@@ -6,13 +6,8 @@ public class Message {
     protected long id;
     private boolean isSend;
 
-    public Message(Long id, String text, boolean isSend) {
+    public Message(long id, String text, boolean isSend) {
         this.id = id;
-        this.text = text;
-        this.isSend = isSend;
-    }
-
-    public Message(String text, boolean isSend) {
         this.text = text;
         this.isSend = isSend;
     }
@@ -22,12 +17,28 @@ public class Message {
         this.id = id;
     }
 
+    public Message(String text, boolean isSend){
+        this(0, text, isSend);
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
     public String getText() {
         return text;
     }
 
+    public void setSend(boolean send) {
+        isSend = send;
+    }
+
     public boolean isSend() {
         return isSend;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getId() {

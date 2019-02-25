@@ -9,10 +9,11 @@ import android.util.Log;
 public class DatabaseOpener extends SQLiteOpenHelper {
 
     public final static String DATABASE_NAME = "ChatDatabaseFile";
-    public final static int VERSION_NUMBER = 1;
+    public final static int VERSION_NUMBER = 5;
     public final static String TABLE_NAME = "ChatTable";
     public final static String COL_ID = "_id";
     public final static String COL_MESSAGE = "MESSAGE";
+    public final static String COL_ISSEND = "ISSEND";
 
 
     public DatabaseOpener(Activity ctx){
@@ -26,7 +27,7 @@ public class DatabaseOpener extends SQLiteOpenHelper {
         //Make sure you put spaces between SQL statements and Java strings:
         db.execSQL("CREATE TABLE " + TABLE_NAME + "( " +
                 COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                COL_MESSAGE  + " TEXT) ");
+                COL_MESSAGE  + " TEXT, " + COL_ISSEND + " BOOLEAN) ");
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)

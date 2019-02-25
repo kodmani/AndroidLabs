@@ -63,6 +63,6 @@
         android:id="@+id/chatBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="go to chat" />
+        android:text="@string/chatBtn" />
 
 </LinearLayout>

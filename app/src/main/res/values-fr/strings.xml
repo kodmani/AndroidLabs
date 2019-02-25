@@ -20,9 +20,10 @@
     <string name="pictureTV">Ta photo:</string>
     <string name="takepicTV">Cliquez sur le bouton ci-dessus pour prendre une photo</string>
 
-    <string name="send">Send</string>
-    <string name="receive">Receive</string>
-    <string name="typeTV">Type here</string>
-    <string name="type_here">Type here</string>
+    <string name="chatBtn">Go to chat</string>
+    <string name="sendBtn">Envoyer</string>
+    <string name="receiveBtn">Recevoir</string>
+    <string name="typeTV">Ecrivez ici</string>
+    <string name="type_here">Ecrivez ici</string>
 
 </resources>

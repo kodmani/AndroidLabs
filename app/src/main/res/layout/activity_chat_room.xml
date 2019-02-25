@@ -35,7 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="@string/send" />
+            android:onClick="sendMessage"
+            android:text="@string/sendBtn" />
 
         <EditText
             android:id="@+id/messageTyped"
@@ -45,14 +46,16 @@
             android:ems="11"
             android:hint="@string/type_here"
             android:inputType=""
-            android:selectAllOnFocus="false" />
+            android:selectAllOnFocus="false"
+            tools:text="@string/type_here" />
 
         <Button
             android:id="@+id/receiveBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="@string/receive" />
+            android:onClick="receiveMessage"
+            android:text="@string/receiveBtn" />
     </LinearLayout>
 
 </LinearLayout>
