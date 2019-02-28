@@ -44,19 +44,22 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         if (!text.equals("")) {
 
-            Message message = new Message(text, true);
+            ContentValues newRowValue = new ContentValues();
+
+            //put string message in the message column
+            newRowValue.put(DatabaseOpener.COL_MESSAGE, text);
+
+            //  newRowValue.put(DatabaseOpener.COL_ID, message.getId());
+            newRowValue.put(DatabaseOpener.COL_ISSEND, true);
+
+            long newId = db.insert(DatabaseOpener.TABLE_NAME, null, newRowValue);
+
+            Message message = new Message(newId, text, true);
+
             messagesList.add(message);
             theList.setAdapter(adapter);
             messageTyped.setText("");
 
-            ContentValues newRowValue = new ContentValues();
-
-            //put string message in the message column
-            newRowValue.put(DatabaseOpener.COL_MESSAGE, message.getText());
-            newRowValue.put(DatabaseOpener.COL_ID, message.getId());
-            newRowValue.put(DatabaseOpener.COL_ISSEND, message.isSend());
-
-            long newId = db.insert(DatabaseOpener.TABLE_NAME, null, newRowValue);
         }
 
         }//end
@@ -66,19 +69,24 @@ public class ChatRoomActivity extends AppCompatActivity {
             String text = messageTyped.getText().toString();
 
             if (!text.equals("")) {
-                Message message = new Message(text, false);
-                messagesList.add(message);
-                theList.setAdapter(adapter);
-                messageTyped.setText("");
-                //add message to database and get new ID
+
                 ContentValues newRowValue = new ContentValues();
 
                 //put string message in the message column
-                newRowValue.put(DatabaseOpener.COL_MESSAGE, message.getText());
-                newRowValue.put(DatabaseOpener.COL_ID, message.getId());
-                newRowValue.put(DatabaseOpener.COL_ISSEND, message.isSend());
+                newRowValue.put(DatabaseOpener.COL_MESSAGE, text);
+
+                //  newRowValue.put(DatabaseOpener.COL_ID, message.getId());
+                newRowValue.put(DatabaseOpener.COL_ISSEND, false);
 
                 long newId = db.insert(DatabaseOpener.TABLE_NAME, null, newRowValue);
+
+                Message message = new Message(newId, text, false);
+
+                messagesList.add(message);
+                adapter.notifyDataSetChanged();
+                messageTyped.setText("");
+
+
             }
 
         }//end
@@ -98,6 +106,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         ImageView sendPic = findViewById(R.id.sendPic);
         TextView messageRow = findViewById(R.id.messageShow);
         ImageView receivePic = findViewById(R.id.receivePic);
+
 
         //Database
         DatabaseOpener dbOpener = new DatabaseOpener(this);
@@ -127,6 +136,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             messagesList.add(new Message(id, message, isSend==1 ));
 
         }
+
         Log.i("size",messagesList.size()+"");
 
 
@@ -206,7 +216,6 @@ public class ChatRoomActivity extends AppCompatActivity {
     }//End onCreate
 
     protected class MyOwnAdapter extends BaseAdapter {
-
 
 
         @Override
