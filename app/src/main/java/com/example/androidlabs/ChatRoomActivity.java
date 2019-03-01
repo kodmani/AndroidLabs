@@ -31,12 +31,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     ListView theList;
     ArrayList<Message> messagesList = new ArrayList<>();
     MyOwnAdapter adapter;
-    public static int ACTIVITY_VIEW_MESSAGE = 33;
-    int positionClicked;
-
     SQLiteDatabase db;
-
-
 
     public void sendMessage(View view) {
 
@@ -103,9 +98,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         theList = findViewById(R.id.theList);
         sendBtn = findViewById(R.id.sendBtn);
         receiveBtn = findViewById(R.id.receiveBtn);
-        ImageView sendPic = findViewById(R.id.sendPic);
-        TextView messageRow = findViewById(R.id.messageShow);
-        ImageView receivePic = findViewById(R.id.receivePic);
 
 
         //Database
@@ -125,7 +117,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         int isSendIndex = results.getColumnIndex(DatabaseOpener.COL_ISSEND);
 
 
-        //maybe if send btn then isSend true.
         //iterate over the results, return true if there is a next item:
         while(results.moveToNext()){
 
@@ -137,81 +128,9 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         }
 
-        Log.i("size",messagesList.size()+"");
-
-
         //Create adapter and send to list
         adapter = new MyOwnAdapter();
         theList.setAdapter(adapter);
-
-
-        //listen for send button clicked
-     /*   sendBtn.setOnClickListener(click -> {
-
-
-            String message = messageTyped.getText().toString();
-
-            //add message to database and get new ID
-            ContentValues newRowValues = new ContentValues();
-
-            //put string message in the message column
-            newRowValues.put(DatabaseOpener.COL_MESSAGE, message);
-            long newId = db.insert(DatabaseOpener.TABLE_NAME, null, newRowValues);
-
-            //Create new message with new ID
-            Message newMessage = new Message(newId, message, true);
-
-            //add new message to list
-            messagesList.add(newMessage);
-
-            //update the listView
-            adapter.notifyDataSetChanged();
-
-            //clear the message field
-            messageTyped.setText("");
-
-            //show notification
-            Toast.makeText(this, "sendBtn!", Toast.LENGTH_SHORT).show();
-
-        });
-
-        //listen for receive button clicked
-        receiveBtn.setOnClickListener(click -> {
-
-            String message = messageTyped.getText().toString();
-
-
-            //Create new message with new ID
-            Message newMessage = new Message(newId, message, false);
-
-            //add new message to list
-            messagesList.add(newMessage);
-
-            //update the listView
-            adapter.notifyDataSetChanged();
-
-            //clear the message field
-            messageTyped.setText("");
-
-            String text = messageTyped.getText().toString();
-
-            //add message to database and get new ID
-            ContentValues newRowValue = new ContentValues();
-
-            //put string message in the message column
-            newRowValue.put(DatabaseOpener.COL_MESSAGE, message);
-            newRowValue.put(DatabaseOpener.COL_ID, newMessage.getId());
-            newRowValue.put(DatabaseOpener.COL_ISSEND, newMessage.isSend());
-
-            long newId = db.insert(DatabaseOpener.TABLE_NAME, null, newRowValue);
-
-
-
-            //show notification
-            Toast.makeText(this, "receiveBtn!", Toast.LENGTH_SHORT).show();
-
-        });*/
-
 
     }//End onCreate
 
@@ -270,8 +189,5 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     }
 
-    public void saveMessage(){
-
-    }
 
 }
