@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewMessage"></activity>
+        <activity android:name=".NewMessage"></activity>
+        <activity android:name=".TestToolbar" />
+        <activity android:name=".ViewMessage" />
         <activity android:name=".ChatRoomActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MainActivity">

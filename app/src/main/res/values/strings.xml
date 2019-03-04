@@ -27,4 +27,10 @@
     <string name="typeTV">Type here</string>
     <string name="type_here">Type here</string>
 
+    <string name="goToToolbar">Go To Toolbar</string>
+    <string name="newMessageTV">What is your new message?</string>
+
+    <string name="item1Toast">You clicked on the overflow menu</string>
+    <string name="item3Toast">This is the initial message</string>
+
 </resources>

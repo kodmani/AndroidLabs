@@ -43,9 +43,14 @@ public class ProfileActivity extends AppCompatActivity {
         gotochat.setOnClickListener( c -> {
 
             Intent nextPage = new Intent(ProfileActivity.this, ChatRoomActivity.class);
-
-            //Now make the transition:
             startActivityForResult( nextPage, 345);
+
+        });
+
+        Button goToToolbar = findViewById(R.id.goToToolbar);
+        goToToolbar.setOnClickListener(e->{
+            Intent intent = new Intent(ProfileActivity.this, TestToolbar.class);
+            startActivity(intent);
         });
 
     }

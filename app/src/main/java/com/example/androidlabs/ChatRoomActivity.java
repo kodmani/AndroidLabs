@@ -3,6 +3,7 @@ package com.example.androidlabs;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
@@ -32,6 +34,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     ArrayList<Message> messagesList = new ArrayList<>();
     MyOwnAdapter adapter;
     SQLiteDatabase db;
+    Cursor results;
 
     public void sendMessage(View view) {
 
@@ -185,9 +188,33 @@ public class ChatRoomActivity extends AppCompatActivity {
     }//End MyOwnAdapter
 
 
-    public void printCursor(Cursor c){
+    public void printCursor() {
+
+        Log.e("Count:", results.getCount() + "");
+        Log.e("Database version:", db.getVersion() + "");
+        Log.e("Number of columns:", results.getColumnCount() + "");
+        Log.e("Name of the columns:", results.getColumnNames().toString());
+        Log.e("Number of results", results.getCount() + "");
+        Log.e("Row:", "");
+
+        results.moveToFirst();
+
+        for (int i = 0; i < results.getCount(); i++) {
+            while (!results.isAfterLast()) {
+
+                long id = results.getLong(2);
+                boolean isSent = results.getInt(0) > 0;
+                String message = results.getString(1);
+
+                Log.e("id", id + "");
+                Log.e("isSent", isSent + "");
+                Log.e("message", message + "");
+
+                results.moveToNext();
+
+            }
+        }
 
     }
-
 
 }

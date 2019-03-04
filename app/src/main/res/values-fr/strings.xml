@@ -25,5 +25,6 @@
     <string name="receiveBtn">Recevoir</string>
     <string name="typeTV">Ecrivez ici</string>
     <string name="type_here">Ecrivez ici</string>
+    <string name="goToToolbar">Aller à la barre d\'outils</string>
 
 </resources>
