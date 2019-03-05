@@ -110,7 +110,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         //Query results from database
         String [] columns = {DatabaseOpener.COL_ID, DatabaseOpener.COL_MESSAGE, DatabaseOpener.COL_ISSEND};
-        Cursor results = db.query(DatabaseOpener.TABLE_NAME, columns,
+        results = db.query(DatabaseOpener.TABLE_NAME, columns,
                 null, null, null, null, null);
 
 
@@ -134,6 +134,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         //Create adapter and send to list
         adapter = new MyOwnAdapter();
         theList.setAdapter(adapter);
+
+        printCursor();
 
     }//End onCreate
 
