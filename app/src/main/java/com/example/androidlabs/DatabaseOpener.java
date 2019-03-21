@@ -15,7 +15,6 @@ public class DatabaseOpener extends SQLiteOpenHelper {
     public final static String COL_MESSAGE = "MESSAGE";
     public final static String COL_ISSEND = "ISSEND";
 
-
     public DatabaseOpener(Activity ctx){
         //The factory parameter should be null, unless you know a lot about Database Memory management
         super(ctx, DATABASE_NAME, null, VERSION_NUMBER);

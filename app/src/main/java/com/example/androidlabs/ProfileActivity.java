@@ -53,6 +53,12 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button weatherBtn = findViewById(R.id.weatherBtn);
+        weatherBtn.setOnClickListener(e->{
+            Intent intent = new Intent(ProfileActivity.this, WeatherForecast.class);
+            startActivity(intent);
+        });
+
     }
 
     static final int REQUEST_IMAGE_CAPTURE = 1;

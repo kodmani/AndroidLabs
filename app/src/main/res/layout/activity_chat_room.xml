@@ -58,4 +58,5 @@
             android:text="@string/receiveBtn" />
     </LinearLayout>
 
+
 </LinearLayout>
