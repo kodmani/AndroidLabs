@@ -40,6 +40,7 @@ public class TestToolbar extends AppCompatActivity {
         inflater.inflate(R.menu.menu, menu);
 
         return true;
+
     }
 
     @Override

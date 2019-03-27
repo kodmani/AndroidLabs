@@ -44,4 +44,8 @@ public class Message {
     public long getId() {
         return id;
     }
+
+    public void putString(String key, Message value) {
+        throw new RuntimeException("Stub!");
+    }
 }

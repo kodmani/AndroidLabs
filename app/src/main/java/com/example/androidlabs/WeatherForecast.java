@@ -62,6 +62,7 @@ public class WeatherForecast extends AppCompatActivity {
         textView= (TextView) findViewById(R.id.tvProgress);
 
         progressBar.setVisibility(View.VISIBLE);  //show the progress bar
+
     }
 
     // a subclass of AsyncTask                  Type1    Type2    Type3

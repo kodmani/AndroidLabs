@@ -3,26 +3,21 @@ package com.example.androidlabs;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
@@ -31,63 +26,20 @@ public class ChatRoomActivity extends AppCompatActivity {
     Button sendBtn;
     Button receiveBtn;
     ListView theList;
+    //replaces source
     ArrayList<Message> messagesList = new ArrayList<>();
     MyOwnAdapter adapter;
     SQLiteDatabase db;
     Cursor results;
 
-    public void sendMessage(View view) {
-
-        String text = messageTyped.getText().toString();
-
-        if (!text.equals("")) {
-
-            ContentValues newRowValue = new ContentValues();
-
-            //put string message in the message column
-            newRowValue.put(DatabaseOpener.COL_MESSAGE, text);
-
-            //  newRowValue.put(DatabaseOpener.COL_ID, message.getId());
-            newRowValue.put(DatabaseOpener.COL_ISSEND, true);
-
-            long newId = db.insert(DatabaseOpener.TABLE_NAME, null, newRowValue);
-
-            Message message = new Message(newId, text, true);
-
-            messagesList.add(message);
-            theList.setAdapter(adapter);
-            messageTyped.setText("");
-
-        }
-
-        }//end
-
-        public void receiveMessage(View view) {
-
-            String text = messageTyped.getText().toString();
-
-            if (!text.equals("")) {
-
-                ContentValues newRowValue = new ContentValues();
-
-                //put string message in the message column
-                newRowValue.put(DatabaseOpener.COL_MESSAGE, text);
-
-                //  newRowValue.put(DatabaseOpener.COL_ID, message.getId());
-                newRowValue.put(DatabaseOpener.COL_ISSEND, false);
-
-                long newId = db.insert(DatabaseOpener.TABLE_NAME, null, newRowValue);
-
-                Message message = new Message(newId, text, false);
-
-                messagesList.add(message);
-                adapter.notifyDataSetChanged();
-                messageTyped.setText("");
-
-
-            }
-
-        }//end
+    public static final String ITEM_SELECTED = "ITEM";
+    public static final String ITEM_POSITION = "POSITION";
+    public static final String ITEM_ID = "ID";
+    public static final int EMPTY_ACTIVITY = 345;
+   // ArrayAdapter<String> theAdapter;
+    //ArrayAdapter<Message> adapter2;
+    //public static final String MESSAGE
+    //ArrayList<String> source = new ArrayList<>( Arrays.asList( "One", "Two", "Three", "Four" ));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,31 +89,116 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         printCursor();
 
+
+        //**********************************LAB 8*********************************
+
+        //ListView theList = (ListView)findViewById(R.id.theList);
+        boolean isTablet = findViewById(R.id.fragmentLocation) != null; //check if the FrameLayout is loaded
+
+
+        theList.setOnItemClickListener( (list, item, position, id) -> {
+
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString(DatabaseOpener.COL_MESSAGE, String.valueOf(messagesList.get(position).getText()));
+            dataToPass.putInt(ITEM_POSITION, position);
+            dataToPass.putLong(ITEM_ID, id);
+
+            if(isTablet)
+            {
+                MessageDetail dFragment = new MessageDetail(); //add a DetailFragment
+                dFragment.setArguments( dataToPass ); //pass it a bundle for information
+                dFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
+                        .addToBackStack("AnyName") //make the back button undo the transaction
+                        .commit(); //actually load the fragment.
+            }
+            else //isPhone
+            {
+                Intent nextActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
+                nextActivity.putExtras(dataToPass); //send data to next activity
+                startActivityForResult(nextActivity, EMPTY_ACTIVITY); //make the transition
+            }
+        });
+
+        //**************************************************************************************
+
     }//End onCreate
 
+    public void sendMessage(View view) {
+
+        String text = messageTyped.getText().toString();
+
+        if (!text.equals("")) {
+
+            ContentValues newRowValue = new ContentValues();
+
+            //put string message in the message column
+            newRowValue.put(DatabaseOpener.COL_MESSAGE, text);
+
+            //  newRowValue.put(DatabaseOpener.COL_ID, message.getId());
+            newRowValue.put(DatabaseOpener.COL_ISSEND, true);
+
+            long newId = db.insert(DatabaseOpener.TABLE_NAME, null, newRowValue);
+
+            Message message = new Message(newId, text, true);
+
+            messagesList.add(message);
+            theList.setAdapter(adapter);
+            messageTyped.setText("");
+
+        }
+
+    }
+
+    public void receiveMessage(View view) {
+
+        String text = messageTyped.getText().toString();
+
+        if (!text.equals("")) {
+
+            ContentValues newRowValue = new ContentValues();
+
+            //put string message in the message column
+            newRowValue.put(DatabaseOpener.COL_MESSAGE, text);
+
+            //  newRowValue.put(DatabaseOpener.COL_ID, message.getId());
+            newRowValue.put(DatabaseOpener.COL_ISSEND, false);
+
+            long newId = db.insert(DatabaseOpener.TABLE_NAME, null, newRowValue);
+
+            Message message = new Message(newId, text, false);
+
+            messagesList.add(message);
+            adapter.notifyDataSetChanged();
+            messageTyped.setText("");
+
+        }
+
+    }
+
+    //This function only gets called on the phone. The tablet never goes to a new activity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == EMPTY_ACTIVITY)
+        {
+            if(resultCode == RESULT_OK) //if you hit the delete button instead of back button
+            {
+                long id = data.getLongExtra(ITEM_ID, 0);
+                deleteMessageId((int)id);
+            }
+        }
+    }
+
+    public void deleteMessageId(int id)
+    {
+        Log.i("Delete this message:" , " id = "+id);
+        messagesList.remove(id);
+        adapter.notifyDataSetChanged();
+    }
+
     protected class MyOwnAdapter extends BaseAdapter {
-
-
-        @Override
-        public int getCount() {
-
-            return messagesList.size();
-
-        }
-
-        @Override
-        public Message getItem(int position){
-
-            return messagesList.get(position);
-
-        }
-
-        @Override
-        public long getItemId(int position) {
-
-            return position;
-
-        }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -186,6 +223,29 @@ public class ChatRoomActivity extends AppCompatActivity {
             return newView;
 
         }
+
+        @Override
+        public int getCount() {
+
+            return messagesList.size();
+
+        }
+
+        @Override
+        public Message getItem(int position){
+
+            return messagesList.get(position);
+
+        }
+
+        @Override
+        public long getItemId(int position) {
+
+            return position;
+
+        }
+
+
 
     }//End MyOwnAdapter
 
